@@ -1,0 +1,41 @@
+
+source C:\Users\CDAC\Desktop\priti_mam_codes\EMP_DEPT_Script.sql
+=====================================================================================================
+
+ select max(sal) , job from emp where ename like 'k%' group by job ;
+
+=====================================================================================================
+delimiter $$
+ create procedure Details (pempno  int)
+  begin
+
+      select ename, job, hiredate,d.dname
+       from emp e , dept d
+       where e.empno = pempno  and e.deptno = d.deptno;
+ end ;
+$$     
+
+delimiter ;
+ call Details(7499);
+
+
+delimiter ;
+ call Details(7521);
+=====================================================================================================
+use Practical_Exam
+
+db.employee.insert({name:'Jivan das' ,age:30 , position:'Software Engineer'})
+
+db.employee.insert({name:'Jatin mohan',age:28   ,position:'Marketing Manager'})
+
+db.employee.insert({name:'sayali bhave',age:35   ,position:' Data Analyst'})
+
+db.employee.find().pretty()
+
+db.employee.update({name:'sayali bhave'},{$set:{position:'Senior Data analyst'}})
+db.employee.find()
+
+ db.employee.remove({name:'Jatin mohan'})
+db.employee.find()
+
+=======================================================================================================
